@@ -32,19 +32,18 @@ resource "aws_sqs_queue_policy" "sqs_queue_policy" {
       {
         "Sid": "Allow IBM to receive",
         "Effect": "Allow",
-        "Principal":
-        {
+        "Principal": {
           "AWS": "arn:aws:iam::${var.account_id}:user/IBM"
         },
-      "Action": "[
-        "SQS:DeleteMessage",
-        "SQS:GetQueueAttributes",
-        "SQS:GetQueueUrl",
-        "SQS:PurgeQueue",
-        "SQS:ReceiveMessage"
-      ]",
+        "Action": [
+          "SQS:DeleteMessage",
+          "SQS:GetQueueAttributes",
+          "SQS:PurgeQueue",
+          "SQS:ReceiveMessage"
+        ],
         "Resource": "${aws_sqs_queue.sqs_queue.arn}"
-      }      
+      }        
+
     ]
   }
 POLICY

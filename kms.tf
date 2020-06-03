@@ -49,7 +49,7 @@ POLICY
 }
 
 resource "aws_kms_alias" "test" {
-  name          = "alias/test"
+  name          = "alias/test-2"
   target_key_id = "${aws_kms_key.test.key_id}"
 }
 
