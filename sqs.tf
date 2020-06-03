@@ -26,7 +26,10 @@ resource "aws_sqs_queue_policy" "sqs_queue_policy" {
           "ArnLike":
           {
             "aws:SourceArn": "${aws_s3_bucket.silvano-test-bucket.arn}"
-          }
+          },
+          "Bool": {
+            "aws:SecureTransport": "true"
+          }          
         }
       },
       {
@@ -41,7 +44,13 @@ resource "aws_sqs_queue_policy" "sqs_queue_policy" {
           "SQS:PurgeQueue",
           "SQS:ReceiveMessage"
         ],
-        "Resource": "${aws_sqs_queue.sqs_queue.arn}"
+        "Resource": "${aws_sqs_queue.sqs_queue.arn}",
+        "Condition":
+        {
+          "Bool": {
+            "aws:SecureTransport": "true"
+          }          
+        }       
       }        
 
     ]
