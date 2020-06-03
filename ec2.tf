@@ -11,7 +11,9 @@ resource "aws_instance" "test" {
     volume_size = "10"
     delete_on_termination = "true"
     encrypted = "true"
-    kms_key_id = "${aws_kms_key.test.key_id}"
+    # kms_key_id = "${aws_kms_key.test.key_id}" 
+    # Modifying any of the root_block_device settings other than volume_size requires resource replacement.
+    # So if using KMS-CMK for the root volume the instance will be rebuilt with every terraform apply
   }
 
   ebs_block_device {
@@ -20,7 +22,7 @@ resource "aws_instance" "test" {
     volume_size = "10"
     delete_on_termination = "true"
     encrypted = "true"
-    kms_key_id = "${aws_kms_key.test.key_id}"
+    kms_key_id = "a4755636-8326-4071-941c-8914fc7a839d"
   }
 
 }
