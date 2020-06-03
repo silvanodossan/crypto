@@ -17,7 +17,12 @@ resource "aws_kms_key" "test" {
                 "kms:GenerateDataKey*",
                 "kms:DescribeKey"
             ],
-            "Resource": "*"
+            "Resource": "*",
+            "Condition": {
+                "IpAddress": {
+                "aws:SourceIp": "86.18.27.14"
+                }
+            }              
         },
         {
             "Sid": "Allow EC2 Instance role use of the key",

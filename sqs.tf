@@ -49,7 +49,10 @@ resource "aws_sqs_queue_policy" "sqs_queue_policy" {
         {
           "Bool": {
             "aws:SecureTransport": "true"
-          }          
+          },  
+          "IpAddress": {
+            "aws:SourceIp": "86.18.27.14"
+            }
         }       
       }        
 
