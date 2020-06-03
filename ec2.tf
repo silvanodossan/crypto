@@ -22,7 +22,7 @@ resource "aws_instance" "test" {
     volume_size = "10"
     delete_on_termination = "true"
     encrypted = "true"
-    kms_key_id = "a4755636-8326-4071-941c-8914fc7a839d"
+    kms_key_id = "${aws_kms_key.test.key_id}"
   }
 
 }
